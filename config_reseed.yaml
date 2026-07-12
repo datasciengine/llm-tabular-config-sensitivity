@@ -1,0 +1,100 @@
+# config.yaml — FROZEN single source of truth.
+# Frozen configuration — single source of truth. Do not edit casually.
+
+seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]   # 15 seeds
+finetune_subsample_seed: 42         # fixed subsample seed, independent of run seed
+
+paths:
+  data_dir: ./data
+  results_dir: ./results_reseed
+  model_cache: ./results/.model_cache
+
+# ---- Sample sizes (FROZEN; resolves ICL scaling + fairness) ----
+sample_size:
+  mode: fixed
+  n: 5000                           # generate n = min(5000, len(train)) rows for ALL generators
+great_finetune_max_rows: 5000       # GReaT fine-tunes on a fixed 5k subsample (seed=42), per dataset
+
+datasets:                                   # RESEED: diabetes-only (primary memorization case)
+  - name: diabetes
+    source: "Pima Indians Diabetes"
+    target: Outcome
+    positive_class: 1
+    problem_type: classification
+    drop_for_tstr: []
+
+# ---- Task-irrelevant configuration axes (LLM generators ONLY; OFAT -> 7 points) ----
+config:
+  baseline:
+    serialization: sentence       # "The {col} is {val}."
+    column_order: original
+    numeric_format: raw
+  axes:
+    serialization: [keyvalue, compact]   # + baseline 'sentence'  -> 3
+    column_order: [perm1, perm2, perm3]  # seeded perms + 'original' -> 4
+    numeric_format: [rounded]            # + baseline 'raw'        -> 2
+  numeric_format_rules:
+    raw: "source precision unchanged"
+    rounded: "continuous cols -> 2 significant figures; integer cols stay integer"
+
+generators:
+  - name: great
+    kind: llm_finetune
+    env: env-llm                  # transformers + torch + be-great + accelerate
+    base_model: distilgpt2
+    config_sensitive: true
+    params: { epochs: 50, batch_size: 32 }    # documented defaults; NO tuning
+  - name: icl
+    kind: llm_icl
+    env: env-llm
+    # Scaled the in-context model 0.5B -> 7B to fix the
+    # wide-table (adult 15 / student 33 cols) valid-row yield collapse and give the
+    # full config axis coverage on all 3 datasets. GReaT stays distilgpt2 (fine-tune
+    # paradigm). ~16GB VRAM in fp16/bf16. Re-runs the ENTIRE ICL arm (105 cells).
+    base_model: Qwen2.5-0.5B-Instruct       # RESEED: paper's primary model (0.5B, heavy memorizer)
+    config_sensitive: true
+    # gen_batch: parallel sequences per generate() call. 4 is safe for a 7B on ~16GB;
+    # raise via env ICL_GEN_BATCH=8/16 if VRAM allows (faster), or drop to 1/2 if OOM.
+    params: { n_shots: 20, temperature: 0.8, chunk_size: 32, max_oversample: 3, gen_batch: 4 }
+  - name: ctgan
+    kind: control
+    env: env-sdv
+    config_sensitive: false                    # ignores config; seed-only (the "floor")
+    params: { epochs: 300 }
+  - name: tvae
+    kind: control
+    env: env-sdv
+    config_sensitive: false
+    params: { epochs: 300 }
+
+metrics:
+  - ks_marginal          # numeric marginals, mean KS (lower better)
+  - tvd_categorical      # categorical marginals, mean TVD/JSD (lower better)
+  - corr_diff            # |corr_real - corr_synth| Frobenius (lower better)
+  - c2st_auc             # real-vs-synth classifier AUC (closer to 0.5 better)
+  - tstr                 # train-on-synth test-on-real (higher better)
+primary_fidelity_metric: ks_marginal
+
+tstr:                    # FROZEN downstream protocol
+  model: HistGradientBoostingClassifier
+  model_params: { random_state: 0 }
+  score: roc_auc
+  preprocessing: "one-hot categoricals, standardize numerics; same pipeline real & synth"
+
+analysis:
+  variance_components:
+    scope: llm_generators_only          # great, icl
+    factors: [generator, dataset, config, seed]
+    report: "percent variance: config vs seed vs residual"
+    controls_reported_as: "seed-only floor (baseline across-seed std)"
+  ranking_stability: [kendall_w, rank_flip_rate, top1_flip_freq, p_wrong_single_run]
+  csi: true                              # spread of primary_fidelity_metric across configs, per gen
+  multiple_comparison_correction:
+    method: holm
+    families:                            # keep separate, per (dataset, metric)
+      config_effect: "config-vs-baseline within each (llm_generator, dataset, metric)"
+      ranking: "generator-pair comparisons within each (dataset, metric)"
+  bootstrap_ci: { n: 1000, level: 0.95 }
+
+# Metrics ALWAYS computed on canonical column order (realign before metrics; order perturbation
+# affects ONLY what the LLM sees during fit). Cache key MUST include a config hash.
