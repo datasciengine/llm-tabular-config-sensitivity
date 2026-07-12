@@ -1,0 +1,14 @@
+# Pin majors at first successful install; record exact versions to results/env.json
+pandas
+numpy
+scipy
+scikit-learn
+statsmodels
+pyyaml
+matplotlib
+# generators
+sdv                 # CTGAN, TVAE (controls)
+be-great            # GReaT LLM generator
+transformers        # ICL generator + GReaT backbone
+torch
+accelerate

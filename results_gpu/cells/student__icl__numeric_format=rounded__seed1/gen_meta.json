@@ -1,0 +1,20 @@
+{
+  "dataset": "student",
+  "generator": "icl",
+  "config_id": "numeric_format=rounded",
+  "config_hash": "64ba1c2a6c",
+  "seed": 1,
+  "n_requested": 316,
+  "versions": {
+    "python": "3.12.13",
+    "torch": "2.11.0+cu130",
+    "transformers": "5.12.1",
+    "vllm": "0.24.0",
+    "numpy": "2.2.6",
+    "pandas": "3.0.3"
+  },
+  "sample_seconds": 777.6,
+  "n_generated": 316,
+  "icl_valid_yield": 0.8781,
+  "status": "ok"
+}

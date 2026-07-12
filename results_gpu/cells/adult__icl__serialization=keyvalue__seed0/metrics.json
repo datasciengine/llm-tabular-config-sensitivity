@@ -1,0 +1,11 @@
+{
+  "ks_marginal": 0.1694244104604418,
+  "tvd_categorical": 0.31672530703026786,
+  "corr_diff": 0.8652319851239274,
+  "c2st_auc": 0.9500658576493045,
+  "tstr": 0.8056023881642692,
+  "dataset": "adult",
+  "generator": "icl",
+  "config_id": "serialization=keyvalue",
+  "seed": 0
+}

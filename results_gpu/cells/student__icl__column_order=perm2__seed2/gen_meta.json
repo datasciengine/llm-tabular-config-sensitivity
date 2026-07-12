@@ -1,0 +1,20 @@
+{
+  "dataset": "student",
+  "generator": "icl",
+  "config_id": "column_order=perm2",
+  "config_hash": "10518d0d49",
+  "seed": 2,
+  "n_requested": 316,
+  "versions": {
+    "python": "3.12.13",
+    "torch": "2.11.0+cu130",
+    "transformers": "5.12.1",
+    "vllm": "0.24.0",
+    "numpy": "2.2.6",
+    "pandas": "3.0.3"
+  },
+  "sample_seconds": 774.32,
+  "n_generated": 316,
+  "icl_valid_yield": 1.0,
+  "status": "ok"
+}

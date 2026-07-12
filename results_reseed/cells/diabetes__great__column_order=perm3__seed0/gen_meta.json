@@ -1,0 +1,20 @@
+{
+  "dataset": "diabetes",
+  "generator": "great",
+  "config_id": "column_order=perm3",
+  "config_hash": "6cba51c79e",
+  "seed": 0,
+  "n_requested": 614,
+  "versions": {
+    "python": "3.11.9",
+    "torch": "2.4.1+cu121",
+    "transformers": "5.13.0",
+    "numpy": "2.1.1",
+    "pandas": "3.0.3"
+  },
+  "finetune_rows": 614,
+  "fit_seconds": 144.66,
+  "sample_seconds": 14.64,
+  "n_generated": 614,
+  "status": "ok"
+}

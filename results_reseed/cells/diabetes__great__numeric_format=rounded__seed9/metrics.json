@@ -1,0 +1,12 @@
+{
+  "ks_marginal": 0.10891693811074918,
+  "tvd_categorical": 0.045602605863192175,
+  "corr_diff": 1.207321107171619,
+  "c2st_auc": 0.6805168447526138,
+  "tstr": 0.4507407407407408,
+  "dataset": "diabetes",
+  "generator": "great",
+  "config_id": "numeric_format=rounded",
+  "config_hash": "64ba1c2a6c",
+  "seed": 9
+}

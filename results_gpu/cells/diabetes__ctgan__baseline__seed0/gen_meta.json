@@ -1,0 +1,19 @@
+{
+  "dataset": "diabetes",
+  "generator": "ctgan",
+  "config_id": "baseline",
+  "config_hash": "e3a850b56e",
+  "seed": 0,
+  "n_requested": 614,
+  "versions": {
+    "python": "3.12.3",
+    "torch": "2.12.0+cu130",
+    "sdv": "1.37.1",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3"
+  },
+  "fit_seconds": 13.03,
+  "sample_seconds": 0.05,
+  "n_generated": 614,
+  "status": "ok"
+}

@@ -1,0 +1,12 @@
+generator,serialization,dcr_median,dcr_p05,exact_copy_frac,nndr_median
+BASELINE_holdout,-,1.168,0.5601,0.0,0.8798
+ctgan,ALL,1.9338,1.0404,0.0,0.9302
+ctgan,sentence,1.9338,1.0404,0.0,0.9302
+great,ALL,1.2373,0.6795,0.0,0.8987
+great,sentence,1.2373,0.6795,0.0,0.8987
+icl,ALL,0.3741,0.0008,0.4287,0.3148
+icl,compact,0.4592,0.0,0.516,0.3148
+icl,keyvalue,0.3758,0.0,0.4857,0.3102
+icl,sentence,0.3568,0.0012,0.3998,0.3157
+tvae,ALL,0.913,0.5454,0.0,0.8929
+tvae,sentence,0.913,0.5454,0.0,0.8929

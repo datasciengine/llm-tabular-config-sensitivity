@@ -1,0 +1,11 @@
+{
+  "ks_marginal": 0.15329804560260585,
+  "tvd_categorical": 0.12377850162866452,
+  "corr_diff": 0.7466184582229494,
+  "c2st_auc": 0.7279541300011161,
+  "tstr": 0.802037037037037,
+  "dataset": "diabetes",
+  "generator": "tvae",
+  "config_id": "baseline",
+  "seed": 0
+}

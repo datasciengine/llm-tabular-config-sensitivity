@@ -1,0 +1,11 @@
+{
+  "ks_marginal": 0.08660186221282828,
+  "tvd_categorical": 0.16027404644480361,
+  "corr_diff": 0.271740744628786,
+  "c2st_auc": 0.9308136179202033,
+  "tstr": 0.8837153346042546,
+  "dataset": "adult",
+  "generator": "great",
+  "config_id": "column_order=perm3",
+  "seed": 1
+}

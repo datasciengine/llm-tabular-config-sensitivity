@@ -1,0 +1,12 @@
+{
+  "ks_marginal": 0.16083061889250816,
+  "tvd_categorical": 0.05374592833876221,
+  "corr_diff": 1.3471271875135813,
+  "c2st_auc": 0.7660230216856346,
+  "tstr": 0.45277777777777783,
+  "dataset": "diabetes",
+  "generator": "great",
+  "config_id": "column_order=perm1",
+  "config_hash": "dc516b3499",
+  "seed": 6
+}

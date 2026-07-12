@@ -1,0 +1,20 @@
+{
+  "dataset": "adult",
+  "generator": "great",
+  "config_id": "numeric_format=rounded",
+  "config_hash": "64ba1c2a6c",
+  "seed": 3,
+  "n_requested": 5000,
+  "versions": {
+    "python": "3.12.3",
+    "torch": "2.12.0+cu130",
+    "transformers": "5.12.0",
+    "numpy": "2.4.6",
+    "pandas": "3.0.3"
+  },
+  "finetune_rows": 5000,
+  "fit_seconds": 1334.83,
+  "sample_seconds": 80.0,
+  "n_generated": 5000,
+  "status": "ok"
+}

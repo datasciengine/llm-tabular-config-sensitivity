@@ -1,0 +1,5 @@
+dataset,generator,n_configs
+diabetes,ctgan,1
+diabetes,great,5
+diabetes,icl,7
+diabetes,tvae,1

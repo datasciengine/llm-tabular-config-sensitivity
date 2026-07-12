@@ -1,0 +1,20 @@
+{
+  "dataset": "student",
+  "generator": "great",
+  "config_id": "baseline",
+  "config_hash": "e3a850b56e",
+  "seed": 0,
+  "n_requested": 316,
+  "versions": {
+    "python": "3.12.3",
+    "torch": "2.12.0+cu130",
+    "transformers": "5.12.0",
+    "numpy": "2.4.6",
+    "pandas": "3.0.3"
+  },
+  "finetune_rows": 316,
+  "fit_seconds": 139.07,
+  "sample_seconds": 7246.66,
+  "n_generated": 316,
+  "status": "ok"
+}

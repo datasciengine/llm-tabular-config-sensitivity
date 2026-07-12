@@ -1,0 +1,6 @@
+dataset,metric,ref_best,p_wrong_1cfg_1seed,p_wrong_1cfg_3seed,p_wrong_3cfg_3seed,p_wrong_allcfg_allseed
+diabetes,ks_marginal,tvae,0.1495,0.0405,0.0,0.0
+diabetes,tvd_categorical,great,0.26,0.082,0.003,0.0
+diabetes,corr_diff,tvae,0.0,0.0,0.0,0.0
+diabetes,c2st_auc,tvae,0.286,0.1085,0.0015,0.0
+diabetes,tstr,tvae,0.0,0.0,0.0,0.0

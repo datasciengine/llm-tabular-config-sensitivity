@@ -1,0 +1,11 @@
+dataset,generator,metric,seed_std,n_seeds
+diabetes,ctgan,ks_marginal,0.03293877055544179,5
+diabetes,ctgan,tvd_categorical,0.0013626384796971921,5
+diabetes,ctgan,corr_diff,0.05771945084449748,5
+diabetes,ctgan,c2st_auc,0.054231389800773674,5
+diabetes,ctgan,tstr,0.12489772221737735,5
+diabetes,tvae,ks_marginal,0.015121850544048505,5
+diabetes,tvae,tvd_categorical,0.0264776971496685,5
+diabetes,tvae,corr_diff,0.14103769432763252,5
+diabetes,tvae,c2st_auc,0.024994707912823523,5
+diabetes,tvae,tstr,0.02222893417155424,5

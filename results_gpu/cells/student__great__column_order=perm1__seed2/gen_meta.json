@@ -1,0 +1,20 @@
+{
+  "dataset": "student",
+  "generator": "great",
+  "config_id": "column_order=perm1",
+  "config_hash": "dc516b3499",
+  "seed": 2,
+  "n_requested": 316,
+  "versions": {
+    "python": "3.12.3",
+    "torch": "2.12.0+cu130",
+    "transformers": "5.12.0",
+    "numpy": "2.4.6",
+    "pandas": "3.0.3"
+  },
+  "finetune_rows": 316,
+  "fit_seconds": 139.83,
+  "sample_seconds": 3929.88,
+  "n_generated": 316,
+  "status": "ok"
+}

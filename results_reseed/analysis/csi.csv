@@ -1,0 +1,5 @@
+dataset,generator,metric,csi,n_configs,csi_mean_over_datasets
+diabetes,ctgan,ks_marginal,0.0,1,0.0
+diabetes,great,ks_marginal,0.04775541735383344,5,0.04775541735383344
+diabetes,icl,ks_marginal,0.1822004478779828,7,0.1822004478779828
+diabetes,tvae,ks_marginal,0.0,1,0.0

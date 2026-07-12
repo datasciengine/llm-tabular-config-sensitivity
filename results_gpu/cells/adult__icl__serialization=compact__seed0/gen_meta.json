@@ -1,0 +1,20 @@
+{
+  "dataset": "adult",
+  "generator": "icl",
+  "config_id": "serialization=compact",
+  "config_hash": "35a9020492",
+  "seed": 0,
+  "n_requested": 5000,
+  "versions": {
+    "python": "3.12.13",
+    "torch": "2.11.0+cu130",
+    "transformers": "5.12.1",
+    "vllm": "0.24.0",
+    "numpy": "2.2.6",
+    "pandas": "3.0.3"
+  },
+  "sample_seconds": 501.85,
+  "n_generated": 5000,
+  "icl_valid_yield": 1.0,
+  "status": "ok"
+}

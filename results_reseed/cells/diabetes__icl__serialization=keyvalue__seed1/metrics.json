@@ -1,0 +1,11 @@
+{
+  "ks_marginal": 0.2666938110749186,
+  "tvd_categorical": 0.016286644951140072,
+  "corr_diff": 2.9939820805697677,
+  "c2st_auc": 0.8392791392927924,
+  "tstr": 0.7005555555555555,
+  "dataset": "diabetes",
+  "generator": "icl",
+  "config_id": "serialization=keyvalue",
+  "seed": 1
+}

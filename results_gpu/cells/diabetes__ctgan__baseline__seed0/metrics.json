@@ -1,0 +1,11 @@
+{
+  "ks_marginal": 0.21763029315960913,
+  "tvd_categorical": 0.1091205211726384,
+  "corr_diff": 1.577838280844569,
+  "c2st_auc": 0.7386573825754252,
+  "tstr": 0.659074074074074,
+  "dataset": "diabetes",
+  "generator": "ctgan",
+  "config_id": "baseline",
+  "seed": 0
+}

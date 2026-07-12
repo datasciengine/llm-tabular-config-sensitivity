@@ -1,0 +1,11 @@
+{
+  "ks_marginal": 0.23180379746835442,
+  "tvd_categorical": 0.14258087201125172,
+  "corr_diff": 2.2505404285383355,
+  "c2st_auc": 0.9381609819853868,
+  "tstr": 0.5413642960812772,
+  "dataset": "student",
+  "generator": "icl",
+  "config_id": "column_order=perm3",
+  "seed": 4
+}

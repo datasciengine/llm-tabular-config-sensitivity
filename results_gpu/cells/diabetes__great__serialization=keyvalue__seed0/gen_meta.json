@@ -1,0 +1,19 @@
+{
+  "dataset": "diabetes",
+  "generator": "great",
+  "config_id": "serialization=keyvalue",
+  "config_hash": "d847f5ebd0",
+  "seed": 0,
+  "n_requested": 614,
+  "versions": {
+    "python": "3.12.3",
+    "torch": "2.12.0+cu130",
+    "transformers": "5.12.0",
+    "numpy": "2.4.6",
+    "pandas": "3.0.3"
+  },
+  "finetune_rows": 614,
+  "status": "error",
+  "error": "NotImplementedError: GReaT serialization='keyvalue' is pending a design decision (override of GReaT's coupled encode/decode/start-sampler + the column-shuffle interplay). See great.py docstring / the project spec sec 12. Only serialization='sentence' (GReaT native) is implemented.",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/ubuntu/llm-tabular-config-sensitivity/src/generate_one.py\", line 78, in main\n    gen.fit(fit_df, seed=args.seed, config=conf, ds_cfg=ds_cfg)\n  File \"/home/ubuntu/llm-tabular-config-sensitivity/src/generators/great.py\", line 39, in fit\n    raise NotImplementedError(\nNotImplementedError: GReaT serialization='keyvalue' is pending a design decision (override of GReaT's coupled encode/decode/start-sampler + the column-shuffle interplay). See great.py docstring / the project spec sec 12. Only serialization='sentence' (GReaT native) is implemented.\n"
+}
