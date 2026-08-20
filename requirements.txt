@@ -12,3 +12,4 @@ be-great            # GReaT LLM generator
 transformers        # ICL generator + GReaT backbone
 torch
 accelerate
+synthcity            # TabDDPM, ARF (stronger baselines, R2-6)

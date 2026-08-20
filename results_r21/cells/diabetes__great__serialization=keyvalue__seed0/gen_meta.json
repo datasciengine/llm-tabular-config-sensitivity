@@ -1,0 +1,21 @@
+{
+  "dataset": "diabetes",
+  "generator": "great",
+  "config_id": "serialization=keyvalue",
+  "config_hash": "d847f5ebd0",
+  "seed": 0,
+  "n_requested": 614,
+  "versions": {
+    "python": "3.11.9",
+    "torch": "2.4.1+cu121",
+    "transformers": "4.45.2",
+    "numpy": "2.1.1",
+    "pandas": "3.0.5"
+  },
+  "finetune_rows": 614,
+  "fit_seconds": 89.84,
+  "sample_seconds": 5.75,
+  "n_generated": 614,
+  "icl_valid_yield": 1.0,
+  "status": "ok"
+}

@@ -1,0 +1,20 @@
+{
+  "dataset": "adult",
+  "generator": "tabddpm",
+  "config_id": "baseline",
+  "config_hash": "e3a850b56e",
+  "seed": 1,
+  "n_requested": 5000,
+  "versions": {
+    "python": "3.9.6",
+    "torch": "2.2.2",
+    "transformers": "4.57.1",
+    "sdv": "1.7.0",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3"
+  },
+  "fit_seconds": 419.04,
+  "sample_seconds": 48.97,
+  "n_generated": 5000,
+  "status": "ok"
+}

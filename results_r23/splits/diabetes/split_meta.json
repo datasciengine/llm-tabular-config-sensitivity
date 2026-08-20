@@ -1,0 +1,8 @@
+{
+  "name": "diabetes",
+  "target": "Outcome",
+  "split_seed": 42,
+  "holdout_frac": 0.2,
+  "n_train": 614,
+  "n_holdout": 154
+}

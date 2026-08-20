@@ -1,0 +1,20 @@
+{
+  "dataset": "diabetes",
+  "generator": "icl",
+  "config_id": "column_order=perm2",
+  "config_hash": "10518d0d49",
+  "seed": 3,
+  "n_requested": 614,
+  "versions": {
+    "python": "3.11.9",
+    "torch": "2.4.1+cu121",
+    "transformers": "4.45.2",
+    "numpy": "2.1.1",
+    "pandas": "3.0.5"
+  },
+  "fit_seconds": 0.06,
+  "sample_seconds": 443.17,
+  "n_generated": 614,
+  "icl_valid_yield": 1.0,
+  "status": "ok"
+}

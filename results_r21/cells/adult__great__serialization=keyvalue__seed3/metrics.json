@@ -1,0 +1,12 @@
+{
+  "ks_marginal": 0.09653549808667301,
+  "tvd_categorical": 0.10068171540930464,
+  "corr_diff": 0.3597571630730742,
+  "c2st_auc": 0.7643848747823212,
+  "tstr": 0.8914396048408639,
+  "dataset": "adult",
+  "generator": "great",
+  "config_id": "serialization=keyvalue",
+  "config_hash": "d847f5ebd0",
+  "seed": 3
+}

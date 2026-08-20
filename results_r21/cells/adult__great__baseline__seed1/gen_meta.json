@@ -1,0 +1,21 @@
+{
+  "dataset": "adult",
+  "generator": "great",
+  "config_id": "baseline",
+  "config_hash": "e3a850b56e",
+  "seed": 1,
+  "n_requested": 5000,
+  "versions": {
+    "python": "3.11.9",
+    "torch": "2.4.1+cu121",
+    "transformers": "4.45.2",
+    "numpy": "2.1.1",
+    "pandas": "3.0.5"
+  },
+  "finetune_rows": 5000,
+  "fit_seconds": 1372.65,
+  "sample_seconds": 101.5,
+  "n_generated": 5000,
+  "icl_valid_yield": 0.9992,
+  "status": "ok"
+}

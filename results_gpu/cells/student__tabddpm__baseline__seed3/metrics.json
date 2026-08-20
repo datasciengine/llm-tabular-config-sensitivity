@@ -1,0 +1,12 @@
+{
+  "ks_marginal": 0.32416930379746833,
+  "tvd_categorical": 0.1889943741209564,
+  "corr_diff": 5.457101974578799,
+  "c2st_auc": 0.9928776140085664,
+  "tstr": 0.6480406386066764,
+  "dataset": "student",
+  "generator": "tabddpm",
+  "config_id": "baseline",
+  "config_hash": "e3a850b56e",
+  "seed": 3
+}

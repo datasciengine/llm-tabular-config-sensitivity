@@ -58,4 +58,7 @@ def make_generator(gen_cfg: dict) -> "BaseGenerator":
     if name == "tvae":
         from .controls import TVAEGenerator
         return TVAEGenerator(params)
+    if name in ("tabddpm", "synthcity", "arf"):
+        from .synth_baseline import SynthcityGenerator
+        return SynthcityGenerator(params)
     raise ValueError(f"unknown generator {name!r}")

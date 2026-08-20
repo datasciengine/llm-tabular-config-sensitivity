@@ -1,0 +1,8 @@
+{
+  "name": "adult",
+  "target": "income",
+  "split_seed": 42,
+  "holdout_frac": 0.2,
+  "n_train": 24129,
+  "n_holdout": 6033
+}

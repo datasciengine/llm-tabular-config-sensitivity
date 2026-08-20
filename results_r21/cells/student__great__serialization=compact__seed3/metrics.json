@@ -1,0 +1,12 @@
+{
+  "ks_marginal": 0.14240506329113922,
+  "tvd_categorical": 0.13484528832630097,
+  "corr_diff": 1.9071401343430392,
+  "c2st_auc": 0.920509731670446,
+  "tstr": 0.6647314949201741,
+  "dataset": "student",
+  "generator": "great",
+  "config_id": "serialization=compact",
+  "config_hash": "35a9020492",
+  "seed": 3
+}

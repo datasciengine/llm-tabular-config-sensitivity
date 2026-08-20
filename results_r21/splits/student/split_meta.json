@@ -1,0 +1,8 @@
+{
+  "name": "student",
+  "target": "pass",
+  "split_seed": 42,
+  "holdout_frac": 0.2,
+  "n_train": 316,
+  "n_holdout": 79
+}

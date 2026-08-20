@@ -1,0 +1,12 @@
+{
+  "ks_marginal": 0.0401503164556962,
+  "tvd_categorical": 0.026019690576652592,
+  "corr_diff": 1.7849046229641043,
+  "c2st_auc": 0.42135849710254475,
+  "tstr": 0.5870827285921625,
+  "dataset": "student",
+  "generator": "arf",
+  "config_id": "baseline",
+  "config_hash": "e3a850b56e",
+  "seed": 0
+}

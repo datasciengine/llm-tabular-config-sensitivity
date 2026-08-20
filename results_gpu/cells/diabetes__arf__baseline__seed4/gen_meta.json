@@ -1,0 +1,20 @@
+{
+  "dataset": "diabetes",
+  "generator": "arf",
+  "config_id": "baseline",
+  "config_hash": "e3a850b56e",
+  "seed": 4,
+  "n_requested": 614,
+  "versions": {
+    "python": "3.9.6",
+    "torch": "2.2.2",
+    "transformers": "4.57.1",
+    "sdv": "1.7.0",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3"
+  },
+  "fit_seconds": 3.52,
+  "sample_seconds": 0.74,
+  "n_generated": 614,
+  "status": "ok"
+}

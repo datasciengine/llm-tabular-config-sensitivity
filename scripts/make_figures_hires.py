@@ -90,25 +90,47 @@ def fig1_per_config_spread(per_metric, out_dir):
     return _save(fig, out_dir, "fig1_per_config_spread")
 
 
+METRIC_ORDER = ["ks_marginal", "tvd_categorical", "corr_diff", "c2st_auc", "tstr"]
+METRIC_PRETTY = {"ks_marginal": "KS", "tvd_categorical": "TVD", "corr_diff": "corr",
+                 "c2st_auc": "C2ST", "tstr": "TSTR"}
+
+
 def fig2_rank_flip(rank_df, out_dir):
-    # Per-metric rank-flip for the primary (single) dataset, with Kendall's W labels.
+    """Rank-flip rate by metric, grouped across datasets (full cross-generator).
+
+    With >1 dataset this draws grouped bars (one bar per dataset per metric), matching
+    the multi-dataset ranking table; with a single dataset it falls back to a simple
+    bar with Kendall's W labels.
+    """
     if rank_df.empty:
         return None
-    order = ["ks_marginal", "tvd_categorical", "corr_diff", "c2st_auc", "tstr"]
-    pretty = {"ks_marginal": "KS", "tvd_categorical": "TVD", "corr_diff": "corr",
-              "c2st_auc": "C2ST", "tstr": "TSTR"}
-    rp = rank_df.set_index("metric").reindex(order).dropna(subset=["rank_flip_rate"])
-    fig, ax = plt.subplots(figsize=(6, 4))
-    ax.bar(range(len(rp)), rp["rank_flip_rate"], color=CB[0], width=0.62)
-    for i, (m, r) in enumerate(rp.iterrows()):
-        w = r.get("kendall_w")
-        if pd.notna(w):
-            ax.text(i, r["rank_flip_rate"] + 0.02, f"$W$={w:.2f}", ha="center", fontsize=8.5)
-    ax.set_xticks(range(len(rp)))
-    ax.set_xticklabels([pretty.get(m, m) for m in rp.index])
-    ax.set_ylabel("rank-flip rate across configs")
+    datasets = sorted(rank_df["dataset"].unique()) if "dataset" in rank_df.columns else [None]
+    metrics = [m for m in METRIC_ORDER if m in set(rank_df["metric"])]
+    x = np.arange(len(metrics))
+    fig, ax = plt.subplots(figsize=(7.2, 4.2))
+    if len(datasets) > 1:
+        w = 0.8 / len(datasets)
+        for di, ds in enumerate(datasets):
+            sub = rank_df[rank_df["dataset"] == ds].set_index("metric")
+            vals = [sub.loc[m, "rank_flip_rate"] if m in sub.index else 0.0 for m in metrics]
+            ax.bar(x + (di - (len(datasets) - 1) / 2) * w, vals, width=w,
+                   color=CB[di], label=str(ds))
+        ax.legend(title="dataset", frameon=False, ncol=len(datasets))
+        title_ds = "all datasets; 7B in-context model, full cross-generator"
+    else:
+        sub = rank_df.set_index("metric")
+        vals = [sub.loc[m, "rank_flip_rate"] if m in sub.index else 0.0 for m in metrics]
+        ax.bar(x, vals, color=CB[0], width=0.62)
+        for i, m in enumerate(metrics):
+            wv = sub.loc[m, "kendall_w"] if "kendall_w" in sub.columns and m in sub.index else np.nan
+            if pd.notna(wv):
+                ax.text(i, vals[i] + 0.02, f"$W$={wv:.2f}", ha="center", fontsize=8.5)
+        title_ds = f"{datasets[0]}, 15 seeds"
+    ax.set_xticks(x)
+    ax.set_xticklabels([METRIC_PRETTY.get(m, m) for m in metrics])
+    ax.set_ylabel("rank-flip rate across configurations")
     ax.set_ylim(0, 1.08)
-    ax.set_title("Ranking instability by metric (diabetes, 15 seeds)")
+    ax.set_title(f"Ranking instability by metric\n({title_ds})")
     return _save(fig, out_dir, "fig2_rank_flip")
 
 

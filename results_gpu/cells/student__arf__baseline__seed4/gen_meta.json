@@ -1,0 +1,20 @@
+{
+  "dataset": "student",
+  "generator": "arf",
+  "config_id": "baseline",
+  "config_hash": "e3a850b56e",
+  "seed": 4,
+  "n_requested": 316,
+  "versions": {
+    "python": "3.9.6",
+    "torch": "2.2.2",
+    "transformers": "4.57.1",
+    "sdv": "1.7.0",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3"
+  },
+  "fit_seconds": 4.04,
+  "sample_seconds": 1.46,
+  "n_generated": 316,
+  "status": "ok"
+}

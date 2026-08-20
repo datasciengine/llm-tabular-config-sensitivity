@@ -1,0 +1,93 @@
+# config_r21 — R2-1: GReaT SERIALIZATION axis (keyvalue/compact/sentence).
+# Overlay over the frozen config.yaml. Separate results_dir so nothing existing is
+# clobbered. Run with GREAT_CUSTOM_ALL=1 so ALL THREE serializations go through the
+# SAME custom-template fine-tune (clean within-pipeline 3-way comparison).
+# Grid: great only x {baseline(sentence), keyvalue, compact} x 3 datasets x 5 seeds = 45 cells.
+
+seeds: [0, 1, 2, 3, 4]
+finetune_subsample_seed: 42
+
+paths:
+  data_dir: ./data
+  results_dir: ./results_r21          # <-- isolated
+  model_cache: ./results_r21/.model_cache
+
+sample_size:
+  mode: fixed
+  n: 5000
+  great_finetune_max_rows: 5000
+
+datasets:
+  - name: adult
+    source: "UCI Adult / Census Income"
+    target: income
+    positive_class: ">50K"
+    problem_type: classification
+    drop_for_tstr: []
+  - name: diabetes
+    source: "Pima Indians Diabetes"
+    target: Outcome
+    positive_class: 1
+    problem_type: classification
+    drop_for_tstr: []
+  - name: student
+    source: "UCI Student Performance (Math) student-mat.csv"
+    target: pass
+    target_rule: "pass = 1 if G3 >= 10 else 0"
+    positive_class: 1
+    problem_type: classification
+    drop_for_tstr: [G1, G2, G3]
+
+# Only the serialization axis (column_order / numeric_format already covered natively
+# in results_gpu). enumerate_configs -> baseline(sentence) + serialization=keyvalue +
+# serialization=compact = 3 configs.
+config:
+  baseline:
+    serialization: sentence
+    column_order: original
+    numeric_format: raw
+  axes:
+    serialization: [keyvalue, compact]
+    column_order: []
+    numeric_format: []
+  numeric_format_rules:
+    raw: "source precision unchanged"
+    rounded: "continuous cols -> 2 significant figures; integer cols stay integer"
+
+generators:
+  - name: great
+    kind: llm_finetune
+    env: env-llm
+    base_model: distilgpt2
+    config_sensitive: true
+    # documented defaults; the custom path adds gen_batch / max_oversample / temperature.
+    params: { epochs: 50, batch_size: 32, gen_batch: 16, max_oversample: 4, temperature: 0.7, great_max_len: 256 }
+
+metrics:
+  - ks_marginal
+  - tvd_categorical
+  - corr_diff
+  - c2st_auc
+  - tstr
+primary_fidelity_metric: ks_marginal
+
+tstr:
+  model: HistGradientBoostingClassifier
+  model_params: { random_state: 0 }
+  score: roc_auc
+  preprocessing: "one-hot categoricals, standardize numerics; same pipeline real & synth"
+
+analysis:
+  variance_components:
+    scope: llm_generators_only
+    factors: [generator, dataset, config, seed]
+    report: "percent variance: config vs seed vs residual"
+    controls_reported_as: "seed-only floor (baseline across-seed std)"
+  ranking_stability: [kendall_w, rank_flip_rate, top1_flip_freq, p_wrong_single_run]
+  csi: true
+  multiple_comparison_correction:
+    method: holm
+    families:
+      config_effect: "config-vs-baseline within each (llm_generator, dataset, metric)"
+      ranking: "generator-pair comparisons within each (dataset, metric)"
+  bootstrap_ci: { n: 1000, level: 0.95 }

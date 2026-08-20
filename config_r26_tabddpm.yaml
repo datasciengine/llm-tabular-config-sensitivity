@@ -1,0 +1,88 @@
+# config_r26 — R2-6: stronger/recent baseline TabDDPM (diffusion) via synthcity.
+# Config-INVARIANT (like CTGAN/TVAE): baseline only -> 3 datasets x 5 seeds = 15 cells.
+# Separate results_dir; merge the cells into results_gpu afterwards to join the ranking/floor analysis.
+
+seeds: [0, 1, 2, 3, 4]
+finetune_subsample_seed: 42
+
+paths:
+  data_dir: ./data
+  results_dir: ./results_r26          # <-- isolated
+  model_cache: ./results_r26/.model_cache
+
+sample_size:
+  mode: fixed
+  n: 5000
+  great_finetune_max_rows: 5000
+
+datasets:
+  - name: adult
+    source: "UCI Adult / Census Income"
+    target: income
+    positive_class: ">50K"
+    problem_type: classification
+    drop_for_tstr: []
+  - name: diabetes
+    source: "Pima Indians Diabetes"
+    target: Outcome
+    positive_class: 1
+    problem_type: classification
+    drop_for_tstr: []
+  - name: student
+    source: "UCI Student Performance (Math) student-mat.csv"
+    target: pass
+    target_rule: "pass = 1 if G3 >= 10 else 0"
+    positive_class: 1
+    problem_type: classification
+    drop_for_tstr: [G1, G2, G3]
+
+config:
+  baseline:
+    serialization: sentence
+    column_order: original
+    numeric_format: raw
+  axes:
+    serialization: []
+    column_order: []
+    numeric_format: []
+  numeric_format_rules:
+    raw: "source precision unchanged"
+    rounded: "continuous cols -> 2 significant figures; integer cols stay integer"
+
+generators:
+  - name: tabddpm
+    kind: baseline
+    env: env-sdv                       # synthcity image (Dockerfile.tabddpm)
+    config_sensitive: false            # ignores config; seed-only (joins the floor)
+    # plugin: TabDDPM. n_iter = diffusion training iterations (synthcity default ~1000;
+    # raise for quality, lower to save GPU). Swap plugin to 'arf'/'tvae' if unstable.
+    params: { plugin: ddpm, n_iter: 1000, batch_size: 1024 }
+
+metrics:
+  - ks_marginal
+  - tvd_categorical
+  - corr_diff
+  - c2st_auc
+  - tstr
+primary_fidelity_metric: ks_marginal
+
+tstr:
+  model: HistGradientBoostingClassifier
+  model_params: { random_state: 0 }
+  score: roc_auc
+  preprocessing: "one-hot categoricals, standardize numerics; same pipeline real & synth"
+
+analysis:
+  variance_components:
+    scope: llm_generators_only
+    factors: [generator, dataset, config, seed]
+    report: "percent variance: config vs seed vs residual"
+    controls_reported_as: "seed-only floor (baseline across-seed std)"
+  ranking_stability: [kendall_w, rank_flip_rate, top1_flip_freq, p_wrong_single_run]
+  csi: true
+  multiple_comparison_correction:
+    method: holm
+    families:
+      config_effect: "config-vs-baseline within each (llm_generator, dataset, metric)"
+      ranking: "generator-pair comparisons within each (dataset, metric)"
+  bootstrap_ci: { n: 1000, level: 0.95 }
