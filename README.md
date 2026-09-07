@@ -1,5 +1,15 @@
 # Configuration Sensitivity of LLM-Based Synthetic Tabular Data Generators
 
+[![Published in IEEE Access](https://img.shields.io/badge/Published%20in-IEEE%20Access%20(2026)-00629B)](https://doi.org/10.1109/ACCESS.2026.3732216)
+[![DOI](https://img.shields.io/badge/DOI-10.1109%2FACCESS.2026.3732216-blue)](https://doi.org/10.1109/ACCESS.2026.3732216)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+
+> **Published in *IEEE Access*, 2026.** Şahin, Varlıklar, and Kılınç,
+> *"Configuration Sensitivity of LLM Tabular Data Synthesizers: A Small-Model
+> Memorization Effect and a Reporting Protocol."*
+> DOI: [10.1109/ACCESS.2026.3732216](https://doi.org/10.1109/ACCESS.2026.3732216) (Open Access, CC BY 4.0).
+> Please [cite the paper](#citation) if you use this code.
+
 This repository contains the code and experimental configuration for an empirical
 study of how **task-irrelevant configuration choices** — the serialization template,
 column order, and numeric formatting used to present tabular rows to a language model —
@@ -95,3 +105,23 @@ Metrics are reported as mean ± 95% CI across seeds. Multiple comparisons are
 Holm-corrected within separate families (configuration effects; generator-pair
 rankings). Variance components are estimated with an ANOVA decomposition
 (`statsmodels`), with a mixed-model cross-check.
+
+## Citation
+
+If you use this code or build on this work, please cite the paper:
+
+```bibtex
+@article{sahin2026configuration,
+  author  = {{\c{S}}ahin, Murat and Varl{\i}klar, {\"O}zlem and K{\i}l{\i}n{\c{c}}, Deniz},
+  title   = {Configuration Sensitivity of {LLM} Tabular Data Synthesizers:
+             A Small-Model Memorization Effect and a Reporting Protocol},
+  journal = {IEEE Access},
+  year    = {2026},
+  publisher = {IEEE},
+  doi     = {10.1109/ACCESS.2026.3732216},
+  url     = {https://doi.org/10.1109/ACCESS.2026.3732216}
+}
+```
+
+The paper is Open Access under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+license; the code in this repository is released under the [MIT License](LICENSE).

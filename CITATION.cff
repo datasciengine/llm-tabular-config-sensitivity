@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the associated IEEE Access paper below."
+title: "Configuration Sensitivity of LLM Tabular Data Synthesizers: A Small-Model Memorization Effect and a Reporting Protocol"
+authors:
+  - family-names: "Şahin"
+    given-names: "Murat"
+    orcid: "https://orcid.org/0000-0002-2866-8796"
+  - family-names: "Varlıklar"
+    given-names: "Özlem"
+  - family-names: "Kılınç"
+    given-names: "Deniz"
+year: 2026
+license: MIT
+repository-code: "https://github.com/datasciengine/llm-tabular-config-sensitivity"
+preferred-citation:
+  type: article
+  title: "Configuration Sensitivity of LLM Tabular Data Synthesizers: A Small-Model Memorization Effect and a Reporting Protocol"
+  authors:
+    - family-names: "Şahin"
+      given-names: "Murat"
+      orcid: "https://orcid.org/0000-0002-2866-8796"
+    - family-names: "Varlıklar"
+      given-names: "Özlem"
+    - family-names: "Kılınç"
+      given-names: "Deniz"
+  journal: "IEEE Access"
+  year: 2026
+  publisher:
+    name: "IEEE"
+  doi: "10.1109/ACCESS.2026.3732216"
+  url: "https://doi.org/10.1109/ACCESS.2026.3732216"
